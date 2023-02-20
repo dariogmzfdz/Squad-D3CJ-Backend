@@ -1,0 +1,10 @@
+version: '1.0'
+services:
+  api:
+    container_name: api
+    restart: always
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/src
