@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const types_1 = require("./types");
+exports.parseInputLogin = exports.parseInputUser = void 0;
 const parseUsername = (inputUsername) => {
     if (!isString(inputUsername)) {
         throw new Error('Nombre de usuario incorrecto o no presente');
@@ -13,12 +13,6 @@ const parsePassword = (inputPassword) => {
     }
     return inputPassword;
 };
-const parseRole = (inputRole) => {
-    if (!isString(inputRole) && !isRole(inputRole)) {
-        throw new Error('Rol de usuario incorrecto o no presente');
-    }
-    return inputRole;
-};
 const parseEmail = (inputEmail) => {
     if (!isString(inputEmail)) {
         throw new Error('Email incorrecto o no presente');
@@ -28,16 +22,21 @@ const parseEmail = (inputEmail) => {
 const isString = (string) => {
     return typeof string === 'string';
 };
-const isRole = (role) => {
-    return Object.values(types_1.UserRole).includes(role);
-};
 const parseInputUser = (object) => {
     const newUser = {
         username: parseUsername(object.username),
         password: parsePassword(object.password),
-        role: parseRole(object.role),
+        /* role: parseRole(object.role), */
         email: parseEmail(object.email)
     };
     return newUser;
 };
-exports.default = parseInputUser;
+exports.parseInputUser = parseInputUser;
+const parseInputLogin = (object) => {
+    const newUser = {
+        email: parseUsername(object.email),
+        password: parsePassword(object.password)
+    };
+    return newUser;
+};
+exports.parseInputLogin = parseInputLogin;
