@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const cors_1 = __importDefault(require("cors"));
 const axios_1 = __importDefault(require("axios"));
 const user_route_1 = __importDefault(require("./routes/user.route"));
+const product_route_1 = __importDefault(require("./routes/product.route"));
 app.use(express_1.default.json());
 const allowedOrigins = ['http://localhost:62243'];
 const options = {
@@ -64,6 +65,7 @@ app.get('/users/:id', (req, res) => {
     });
 });
 app.use('/api/users', user_route_1.default);
+app.use('/api/products', product_route_1.default);
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });

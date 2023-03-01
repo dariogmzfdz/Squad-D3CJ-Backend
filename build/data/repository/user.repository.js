@@ -65,6 +65,25 @@ class UserRepository {
             return data;
         });
     }
+    updateUser(user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let data = {};
+            try {
+                data = yield this.userRepository.findOne({ where: { email: user.email } });
+                if (data == null) {
+                    console.error('The user does not exist.');
+                }
+                else {
+                    data = yield this.userRepository.update(user, { where: { email: user.email } });
+                }
+            }
+            catch (err) {
+                console.error('An error occurred when updating the user.');
+                console.error(err);
+            }
+            return data;
+        });
+    }
     login(email) {
         return __awaiter(this, void 0, void 0, function* () {
             let data = {};

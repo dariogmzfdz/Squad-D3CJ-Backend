@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connect = void 0;
+const product_model_1 = require("./../data/model/product.model");
 const sequelize_typescript_1 = require("sequelize-typescript");
-const user_model_1 = require("../data/model/user.model");
 const connect = () => {
     console.log('===============================');
     console.log('Database environment variables:');
@@ -30,7 +30,7 @@ const connect = () => {
             idle: 5000
         }
     });
-    sequelize.addModels([user_model_1.Users]);
+    sequelize.addModels([product_model_1.Products]);
     const db = {};
     db.Sequelize = sequelize_typescript_1.Sequelize;
     db.sequelize = sequelize;

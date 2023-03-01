@@ -53,7 +53,6 @@ export class UserService {
     })
     return userPromise
   }
-  // if the user exists, return the user, if not, create the user and return the user
 
   async addUser (user: NewUser): Promise<User> {
     const userPromise = await this.userRepository.addUser(user).then(result => {
@@ -62,6 +61,21 @@ export class UserService {
       console.error('An error occurred when adding the user.')
       console.error(err)
       throw (err)
+    })
+    return userPromise
+  }
+
+  async updateUser (user: User): Promise<User | undefined> {
+    const userPromise = await this.userRepository.updateUser(user).then(result => {
+      if (result != null) {
+        return mapUserResult(result)
+      } else {
+        return undefined
+      }
+    }).catch(err => {
+      console.error('An error occurred when updating the user.')
+      console.error(err)
+      return undefined
     })
     return userPromise
   }

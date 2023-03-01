@@ -3,7 +3,8 @@ import { Table, Column, Model } from 'sequelize-typescript'
 
 @Table({
   freezeTableName: true,
-  tableName: 'Product'
+  tableName: 'Product',
+  timestamps: false
 })
 export class Products extends Model {
   @Column({

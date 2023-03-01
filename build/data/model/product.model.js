@@ -68,7 +68,8 @@ __decorate([
 Products = __decorate([
     (0, sequelize_typescript_1.Table)({
         freezeTableName: true,
-        tableName: 'Product'
+        tableName: 'Product',
+        timestamps: false
     })
 ], Products);
 exports.Products = Products;

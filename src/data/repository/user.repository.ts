@@ -54,6 +54,22 @@ export class UserRepository {
     return data
   }
 
+  async updateUser (user: DBUsers): Promise<DBUsers> {
+    let data: DBUsers = {} as DBUsers
+    try {
+      data = await this.userRepository.findOne({ where: { email: user.email } })
+      if (data == null) {
+        console.error('The user does not exist.')
+      } else {
+        data = await this.userRepository.update(user, { where: { email: user.email } })
+      }
+    } catch (err) {
+      console.error('An error occurred when updating the user.')
+      console.error(err)
+    }
+    return data
+  }
+
   async login (email: string): Promise<DBUsers> {
     let data: DBUsers = {} as DBUsers
     try {

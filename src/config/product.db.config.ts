@@ -1,5 +1,5 @@
+import { Products } from './../data/model/product.model'
 import { Sequelize } from 'sequelize-typescript'
-import { Users } from '../data/model/user.model'
 
 export const connect = () => {
   console.log('===============================')
@@ -29,7 +29,7 @@ export const connect = () => {
     }
   })
 
-  sequelize.addModels([Users])
+  sequelize.addModels([Products])
 
   const db: any = {}
   db.Sequelize = Sequelize

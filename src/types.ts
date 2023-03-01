@@ -10,6 +10,8 @@ export interface User {
   password: string
   role: UserRole
   email: string
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export type UserSinPassword = Omit<User, 'password'>

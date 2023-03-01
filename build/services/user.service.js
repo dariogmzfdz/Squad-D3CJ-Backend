@@ -77,6 +77,18 @@ class UserService {
             return userPromise;
         });
     }
+    updateUser(user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const userPromise = yield this.userRepository.updateUser(user).then(result => {
+                return (0, exports.mapUserResult)(result);
+            }).catch(err => {
+                console.error('An error occurred when updating the user.');
+                console.error(err);
+                throw (err);
+            });
+            return userPromise;
+        });
+    }
     login(email) {
         return __awaiter(this, void 0, void 0, function* () {
             const userPromise = yield this.userRepository.login(email).then(result => {
