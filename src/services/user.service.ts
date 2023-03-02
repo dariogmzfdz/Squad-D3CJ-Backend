@@ -65,7 +65,7 @@ export class UserService {
     return userPromise
   }
 
-  async updateUser (user: User): Promise<User | undefined> {
+  /* async updateUser (user: User): Promise<User | undefined> {
     const userPromise = await this.userRepository.updateUser(user).then(result => {
       if (result != null) {
         return mapUserResult(result)
@@ -78,7 +78,7 @@ export class UserService {
       return undefined
     })
     return userPromise
-  }
+  } */
 
   async login (email: string): Promise<User | undefined> {
     const userPromise = await this.userRepository.login(email).then(result => {

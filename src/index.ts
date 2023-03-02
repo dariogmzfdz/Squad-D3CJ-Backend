@@ -9,7 +9,7 @@ import userRouter from './routes/user.route'
 import productRouter from './routes/product.route'
 app.use(express.json())
 
-const allowedOrigins = ['http://localhost:62243']
+const allowedOrigins = ['http://localhost:4200']
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins

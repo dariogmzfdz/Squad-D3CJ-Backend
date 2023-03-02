@@ -2,12 +2,6 @@ import { Products } from './../data/model/product.model'
 import { Sequelize } from 'sequelize-typescript'
 
 export const connect = () => {
-  console.log('===============================')
-  console.log('Database environment variables:')
-  console.log(`Hostname: ${process.env.DB_HOST}`)
-  console.log(`Port: ${process.env.DB_PORT}`)
-  console.log(`Database: ${process.env.DB_NAME}`)
-  console.log('===============================')
   const hostName = (process.env.DB_HOST == null) ? process.env.DB_HOST : 'localhost'
   const port = !(process.env.DB_PORT == null) ? process.env.DB_PORT : 5432
   const userName = 'postgres'

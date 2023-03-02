@@ -1,6 +1,6 @@
-CREATE SCHEMA IF NOT EXISTS test_schema;
+CREATE SCHEMA IF NOT EXISTS D3CJ;
 
-CREATE SEQUENCE IF NOT EXISTS test_schema."users_userId_seq"
+CREATE SEQUENCE IF NOT EXISTS D3CJ."users_userId_seq"
     INCREMENT 1
     START 1
     MINVALUE 1
@@ -22,5 +22,5 @@ CREATE TABLE IF NOT EXISTS test_schema.users
     CONSTRAINT users_pkey PRIMARY KEY ("userId")
 );
 
-ALTER TABLE IF EXISTS test_schema.users
+ALTER TABLE IF EXISTS D3CJ.User
     OWNER to postgres;

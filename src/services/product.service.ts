@@ -44,7 +44,10 @@ export const mapProductResult = (product: DBProducts): Product => {
     carYear: product.carYear,
     material: product.material,
     amount: product.amount,
-    price: product.price
+    price: product.price,
+    type: product.type,
+    scale: product.scale,
+    secondHand: product.secondHand
   }
 
   return returnProduct

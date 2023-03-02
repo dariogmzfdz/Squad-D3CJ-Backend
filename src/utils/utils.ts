@@ -83,6 +83,27 @@ const parsePrice = (inputPrice: any): number => {
   return inputPrice
 }
 
+const parseType = (inputType: any): string => {
+  if (!isString(inputType)) {
+    throw new Error('Tipo incorrecto o no presente')
+  }
+  return inputType
+}
+
+const parseScale = (inputScale: any): number => {
+  if (!isNumber(inputScale)) {
+    throw new Error('Escala incorrecta o no presente')
+  }
+  return inputScale
+}
+
+const parseSecondHand = (inputSecondHand: any): string => {
+  if (!isString(inputSecondHand)) {
+    throw new Error('Segunda mano incorrecta o no presente')
+  }
+  return inputSecondHand
+}
+
 const isNumber = (number: number): boolean => {
   return typeof number === 'number'
 }
@@ -104,7 +125,10 @@ const parseInputProduct = (object: any): NewProduct => {
     carYear: parseCarYear(object.carYear),
     material: parseMaterial(object.material),
     amount: parseAmount(object.amount),
-    price: parsePrice(object.price)
+    price: parsePrice(object.price),
+    type: parseType(object.type),
+    scale: parseScale(object.scale),
+    secondHand: parseSecondHand(object.secondHand)
   }
 
   return newProduct

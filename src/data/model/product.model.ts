@@ -49,4 +49,19 @@ export class Products extends Model {
     field: 'price'
   })
     price!: number
+
+  @Column({
+    field: 'type'
+  })
+    type!: string
+
+  @Column({
+    field: 'scale'
+  })
+    scale!: number
+
+  @Column({
+    field: 'secondHand'
+  })
+    secondHand!: string
 }

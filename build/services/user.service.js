@@ -64,7 +64,6 @@ class UserService {
             return userPromise;
         });
     }
-    // if the user exists, return the user, if not, create the user and return the user
     addUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
             const userPromise = yield this.userRepository.addUser(user).then(result => {
@@ -77,18 +76,20 @@ class UserService {
             return userPromise;
         });
     }
-    updateUser(user) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const userPromise = yield this.userRepository.updateUser(user).then(result => {
-                return (0, exports.mapUserResult)(result);
-            }).catch(err => {
-                console.error('An error occurred when updating the user.');
-                console.error(err);
-                throw (err);
-            });
-            return userPromise;
-        });
-    }
+    /* async updateUser (user: User): Promise<User | undefined> {
+      const userPromise = await this.userRepository.updateUser(user).then(result => {
+        if (result != null) {
+          return mapUserResult(result)
+        } else {
+          return undefined
+        }
+      }).catch(err => {
+        console.error('An error occurred when updating the user.')
+        console.error(err)
+        return undefined
+      })
+      return userPromise
+    } */
     login(email) {
         return __awaiter(this, void 0, void 0, function* () {
             const userPromise = yield this.userRepository.login(email).then(result => {

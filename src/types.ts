@@ -26,6 +26,9 @@ export interface Product {
   material: string
   amount: number
   price: number
+  type: string
+  scale: number
+  secondHand: string
 }
 
 export type NewProduct = Omit<Product, 'productId'>

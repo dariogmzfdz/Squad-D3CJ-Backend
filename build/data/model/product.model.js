@@ -65,6 +65,24 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], Products.prototype, "price", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        field: 'type'
+    }),
+    __metadata("design:type", String)
+], Products.prototype, "type", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        field: 'scale'
+    }),
+    __metadata("design:type", Number)
+], Products.prototype, "scale", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        field: 'secondHand'
+    }),
+    __metadata("design:type", String)
+], Products.prototype, "secondHand", void 0);
 Products = __decorate([
     (0, sequelize_typescript_1.Table)({
         freezeTableName: true,
