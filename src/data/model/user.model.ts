@@ -3,15 +3,14 @@ import { Table, Column, Model } from 'sequelize-typescript'
 
 @Table({
   freezeTableName: true,
-  tableName: 'User'
+  tableName: 'Users'
 })
 export class Users extends Model {
   @Column({
     type: INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    comment: 'user id',
-    field: 'user_ID'
+    comment: 'user id'
   })
     userId!: number
 
