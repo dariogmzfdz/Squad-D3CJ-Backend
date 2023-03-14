@@ -4,7 +4,25 @@ services:
     container_name: api
     restart: always
     build: .
+    depends_on:
+      - db
     ports:
-      - "5000:5000"
+      - ${PORT}:${PORT}
     volumes:
-      - .:/src
+      - './:/src'
+  db:
+    container_name: db
+    image: postgres
+    environment: 
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - '5432:${DB_PORT}'
+    volumes:
+      - data:/data/db
+      - ./src/config/ddl.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - images-db:./src/images-db
+volumes:
+  data: {}
+  images-db: {}
