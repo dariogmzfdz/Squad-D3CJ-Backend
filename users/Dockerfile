@@ -1,5 +1,5 @@
 FROM node:alpine
-WORKDIR /usr/app
+WORKDIR /usr/app/users
 COPY ["package.json", "package-lock.json", "tsconfig.json", ".env", "./"]
 COPY ./src ./src
-RUN npm install
+CMD npm install && npm run deploy

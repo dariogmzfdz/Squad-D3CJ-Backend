@@ -1,15 +1,29 @@
 version: '1.0'
 services:
   api:
-    container_name: api
+    container_name: api-gateway
     restart: always
-    build: .
+    build: ./api-gateway
     depends_on:
       - db
     ports:
       - ${PORT}:${PORT}
-    volumes:
-      - './:/src'
+  users:
+    container_name: users
+    restart: always
+    build: ./users
+    depends_on:
+      - db
+    ports:
+      - ${USER_PORT}:${USER_PORT}
+  products:
+    container_name: products
+    restart: always
+    build: ./products
+    depends_on:
+      - db
+    ports:
+      - ${PRODUCT_PORT}:${PRODUCT_PORT}
   db:
     container_name: db
     image: postgres
@@ -21,8 +35,6 @@ services:
       - '5432:${DB_PORT}'
     volumes:
       - data:/data/db
-      - ./src/config/ddl.sql:/docker-entrypoint-initdb.d/create_tables.sql
-      - images-db:./src/images-db
+      - ./config/ddl.sql:/docker-entrypoint-initdb.d/create_tables.sql
 volumes:
   data: {}
-  images-db: {}
