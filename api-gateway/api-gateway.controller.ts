@@ -43,9 +43,9 @@ export const apiGatewayController = {
         // Guardas la ruta de la imagen en el array de imágenes del producto
         // Envías el producto con el array de imágenes al servicio de productos
         let data : Product = JSON.parse(req.body.data) as Product
-        data.images = []
         const productId = uuid()
         data = {...data}
+        data.images = []
         data.productId = productId
         data.cars[0].productId = productId
         const images = req.files
@@ -62,6 +62,9 @@ export const apiGatewayController = {
                 productId: data.productId,
                 path: newPath
             }
+            console.log(tbiImage);
+            console.log(data);
+
             data.images.push(tbiImage)
         })
         const reqUrl = req.originalUrl.replace('images', 'api')
@@ -70,6 +73,7 @@ export const apiGatewayController = {
 
         axios.post(serviceUrl + reqUrl, data).then((response: any) => {
             res.json(response.data)
+            console.log(response.data);
         }).catch((error: any) => {
             console.log(error);
             res.sendStatus(500)

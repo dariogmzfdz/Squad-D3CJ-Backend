@@ -13,7 +13,7 @@ export class Images extends Model {
         type: STRING,
         primaryKey: true,
     })
-        imageId!: string;
+    imageId!: string;
 
     @ForeignKey(() => Products)
     @Column({
@@ -27,6 +27,6 @@ export class Images extends Model {
     @Column({
         field: "path"
     })
-        path!: string;
+    path!: string;
 
 }

@@ -79,28 +79,21 @@ export class ProductRepository {
   }
 
   async addCar(product: Product, car: NewCar): Promise<DBCars> {
-    let data : DBCars = car as DBCars
-    console.log(data);
+    let data: DBCars = car as DBCars
+    let dataProduct: DBProducts = product as DBProducts
+    console.log(data)
+    console.log(dataProduct)
     data.carId = uuid()
-    
+
     try {
-      let productIdExist = this.productRepository.findOne({
-        where: { productId: product.productId },
-      })
       car.secondHand = car.isAdmin ? 'N' : 'S'
-      if (productIdExist) {
-        car.product = product
-        car.productId = productIdExist.productId
-        data = await this.carRepository.create(car, { include : this.productRepository})
-      } else {
-        this.addProduct(product).then((dbProduct) => {
-          car.product = dbProduct
-          car.productId = product.productId
-          data = this.carRepository.create(car, {
-            include: this.productRepository,
-          })
-        })
-      }
+      console.log('product:::', product)
+      dataProduct = await this.addProduct(product).then((dbProduct) => {
+        car.product = dbProduct
+        car.productId = product.productId
+        data = this.carRepository.create(car)
+        return dbProduct
+      })
     } catch (err) {
       console.error('An error occurred when adding the car.')
       console.error(err)
