@@ -8,8 +8,11 @@ services:
       - db
     ports:
       - ${PORT}:${PORT}
+    volumes:
+      - images:/images
   users:
     container_name: users
+    hostname: users
     restart: always
     build: ./users
     depends_on:
@@ -18,12 +21,22 @@ services:
       - ${USER_PORT}:${USER_PORT}
   products:
     container_name: products
+    hostname: products
     restart: always
     build: ./products
     depends_on:
       - db
     ports:
       - ${PRODUCT_PORT}:${PRODUCT_PORT}
+    volumes:
+      - images:/images
+  images-server:
+    image: bdlss/iipsrv-openjpeg-docker
+    container_name: images-server
+    ports:
+      - 5003:80
+    volumes:
+      - images:/var/www/localhost/images
   db:
     container_name: db
     image: postgres
@@ -38,3 +51,9 @@ services:
       - ./config/ddl.sql:/docker-entrypoint-initdb.d/create_tables.sql
 volumes:
   data: {}
+  images: 
+    driver: local
+    driver_opts:
+      type: none
+      device: C:/images
+      o: bind

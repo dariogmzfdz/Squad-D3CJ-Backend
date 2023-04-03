@@ -1,15 +1,34 @@
 export interface Product {
-  productId: number
-  color: string
-  model: string
+  productId?: string
   brand: string
+  model: string
+  color: string
   carYear: number
   material: string
-  amount: number
-  price: number
-  type: string
   scale: number
-  secondHand: string
+  type: string
+  images: Images[]
+  cars?: Cars[]
 }
 
-export type NewProduct = Omit<Product, 'productId'>
+export type NewProduct = Product
+
+export interface Cars {
+  carId?: string
+  userId: string
+  productId: string
+  description: string
+  amount: number
+  price: number
+  secondHand?: string
+  isAdmin?: boolean,
+  product?: Product
+}
+
+export type NewCar = Cars
+
+export interface Images {
+  imageId?: string
+  productId?: string
+  path: string
+}

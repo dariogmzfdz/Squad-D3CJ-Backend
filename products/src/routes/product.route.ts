@@ -3,11 +3,13 @@ import { productController } from '../controllers/product.controller'
 
 const productRouter = express.Router()
 
-productRouter.get('/', productController.getAllProducts)
+productRouter.get('/all', productController.getAllAdminProducts)
+
+productRouter.get('/allUsers', productController.getAllUsersProducts)
 
 productRouter.get('/:id', productController.getProductById)
 
-productRouter.post('/', productController.addProduct)
+productRouter.post('/add', productController.addCar)
 
 productRouter.delete('/:id', productController.deleteProduct)
 

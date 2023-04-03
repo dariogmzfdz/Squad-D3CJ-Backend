@@ -13,7 +13,7 @@ export class UserService {
     const userPromise = await this.userRepository.getAllUsers().then(result => {
       const users: User[] = []
       result.forEach(dbUser => {
-        users.push(mapUserResult(dbUser))
+        users.push(parsePojoIntoDto(dbUser))
       })
       return users
     }).catch(err => {
@@ -42,7 +42,7 @@ export class UserService {
   async getUserById (id: number): Promise<User | undefined> {
     const userPromise = await this.userRepository.getUserById(id).then(result => {
       if (result != null) {
-        return mapUserResult(result)
+        return parsePojoIntoDto(result)
       } else {
         return undefined
       }
@@ -56,7 +56,7 @@ export class UserService {
 
   async addUser (user: NewUser): Promise<User> {
     const userPromise = await this.userRepository.addUser(user).then(result => {
-      return mapUserResult(result)
+      return parsePojoIntoDto(result)
     }).catch(err => {
       console.error('An error occurred when adding the user.')
       console.error(err)
@@ -65,25 +65,10 @@ export class UserService {
     return userPromise
   }
 
-  /* async updateUser (user: User): Promise<User | undefined> {
-    const userPromise = await this.userRepository.updateUser(user).then(result => {
-      if (result != null) {
-        return mapUserResult(result)
-      } else {
-        return undefined
-      }
-    }).catch(err => {
-      console.error('An error occurred when updating the user.')
-      console.error(err)
-      return undefined
-    })
-    return userPromise
-  } */
-
   async login (email: string): Promise<User | undefined> {
     const userPromise = await this.userRepository.login(email).then(result => {
       if (result != null) {
-        return mapUserResult(result)
+        return parsePojoIntoDto(result)
       } else {
         return undefined
       }
@@ -111,13 +96,14 @@ export class UserService {
   }
 }
 
-export const mapUserResult = (user: DBUsers): User => {
+export const parsePojoIntoDto = (user: DBUsers): User => {
   const returnUser = {
     userId: user.dataValues.userId,
     username: user.dataValues.username,
     password: user.dataValues.password,
     role: user.dataValues.role as UserRole,
-    email: user.dataValues.email
+    email: user.dataValues.email,
+    status: user.dataValues.status == 'active',
   }
   return returnUser
 }

@@ -38,7 +38,6 @@ const parseInputUser = (object: any): NewUser => {
   const newUser: NewUser = {
     username: parseUsername(object.username),
     password: parsePassword(object.password),
-    /* role: parseRole(object.role), */
     email: parseEmail(object.email)
   }
 

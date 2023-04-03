@@ -1,5 +1,7 @@
 import { Products } from '../model/product.model'
 import { Sequelize } from 'sequelize-typescript'
+import { Images } from '../model/images.model'
+import { Cars } from '../model/car.model'
 
 export const connect = () => {
   const hostName = !(process.env.DB_HOST == null) ? process.env.DB_HOST : 'localhost'
@@ -23,7 +25,7 @@ export const connect = () => {
     }
   })
 
-  sequelize.addModels([Products])
+  sequelize.addModels([Products, Images, Cars])
 
   const db: any = {}
   db.Sequelize = Sequelize

@@ -1,3 +1,4 @@
+import { Images } from './../data/model/images.model';
 import { NewProduct } from '../types'
 
 const isString = (string: string): boolean => {
@@ -39,20 +40,6 @@ const parseMaterial = (inputMaterial: any): string => {
   return inputMaterial
 }
 
-const parseAmount = (inputAmount: any): number => {
-  if (!isNumber(inputAmount)) {
-    throw new Error('Cantidad incorrecta o no presente')
-  }
-  return inputAmount
-}
-
-const parsePrice = (inputPrice: any): number => {
-  if (!isNumber(inputPrice)) {
-    throw new Error('Precio incorrecto o no presente')
-  }
-  return inputPrice
-}
-
 const parseType = (inputType: any): string => {
   if (!isString(inputType)) {
     throw new Error('Tipo incorrecto o no presente')
@@ -67,29 +54,32 @@ const parseScale = (inputScale: any): number => {
   return inputScale
 }
 
-const parseSecondHand = (inputSecondHand: any): string => {
-  if (!isString(inputSecondHand)) {
-    throw new Error('Segunda mano incorrecta o no presente')
+const parseImages = (inputImages: any): Images[] => {
+  if (!isFile(inputImages)) {
+    throw new Error('Imagenes incorrectas o no presentes')
   }
-  return inputSecondHand
+  return inputImages
 }
 
 const isNumber = (number: number): boolean => {
   return typeof number === 'number'
 }
 
+const isFile = (file: File): boolean => {
+  return typeof file === 'object'
+}
+
 const parseInputProduct = (object: any): NewProduct => {
   const newProduct: NewProduct = {
+    productId: object.productId,
     color: parseColor(object.color),
     model: parseModel(object.model),
     brand: parseBrand(object.brand),
     carYear: parseCarYear(object.carYear),
     material: parseMaterial(object.material),
-    amount: parseAmount(object.amount),
-    price: parsePrice(object.price),
     type: parseType(object.type),
     scale: parseScale(object.scale),
-    secondHand: parseSecondHand(object.secondHand)
+    images: parseImages(object.images)
   }
 
   return newProduct

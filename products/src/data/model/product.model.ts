@@ -1,5 +1,7 @@
-import { INTEGER } from 'sequelize'
-import { Table, Column, Model } from 'sequelize-typescript'
+import { STRING } from 'sequelize'
+import { Table, Column, Model, HasMany } from 'sequelize-typescript'
+import { Images } from './images.model'
+import { Cars } from './car.model'
 
 @Table({
   freezeTableName: true,
@@ -8,12 +10,10 @@ import { Table, Column, Model } from 'sequelize-typescript'
 })
 export class Products extends Model {
   @Column({
-    type: INTEGER,
+    type: STRING,
     primaryKey: true,
-    autoIncrement: true,
-    comment: 'product id'
   })
-    productId!: number
+    productId!: string
 
   @Column({
     field: 'color'
@@ -41,16 +41,6 @@ export class Products extends Model {
     material!: string
 
   @Column({
-    field: 'amount'
-  })
-    amount!: number
-
-  @Column({
-    field: 'price'
-  })
-    price!: number
-
-  @Column({
     field: 'type'
   })
     type!: string
@@ -60,8 +50,9 @@ export class Products extends Model {
   })
     scale!: number
 
-  @Column({
-    field: 'secondHand'
-  })
-    secondHand!: string
+  @HasMany(() => Images)
+    images!: Images[]
+
+  @HasMany(() => Cars)
+    cars!: Cars[]
 }

@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import router from './router'
+import imagesRouter from './images.router'
 
 require('dotenv').config()
 
@@ -15,7 +16,8 @@ const options: cors.CorsOptions = {
 
 app.use(cors(options))
 
-app.use('/*', router) 
+app.use('/api', router)
+app.use('/images', imagesRouter)
 
 app.get('/ping', (_req, res) => {
   console.log('someone pinged here' + ' ' + new Date().toLocaleDateString())
