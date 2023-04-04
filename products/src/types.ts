@@ -32,3 +32,10 @@ export interface Images {
   productId?: string
   path: string
 }
+
+export interface Comments {
+  commentId?: string
+  userId: string
+  carId: string
+  comment: string
+}

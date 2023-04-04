@@ -41,7 +41,7 @@ const parsePrice = (inputPrice: any): number => {
 }
 
 const parseSecondHand = (inputSecondHand: any): string => {
-  if (!isString(inputSecondHand)) {
+  if (!isString(inputSecondHand) && inputSecondHand != null) {
     throw new Error('Segunda mano incorrecta o no presente')
   }
   return inputSecondHand
@@ -67,14 +67,14 @@ const parseInputCar = (object: any): NewCar => {
     productId: parseProductId(object.productId),
     amount: parseAmount(object.amount),
     price: parsePrice(object.price),
-    description: parseDescription(object.description)
+    description: parseDescription(object.description),
+    secondHand: parseSecondHand(object.secondHand),
+    isAdmin: parseIsAdmin(object.isAdmin)
   }
 
   return newCar
 }
 
 export {
-    parseInputCar,
-    parseSecondHand,
-    parseIsAdmin
+    parseInputCar
 }

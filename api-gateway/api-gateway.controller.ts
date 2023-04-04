@@ -63,10 +63,16 @@ export const apiGatewayController = {
                 path: newPath
             }
             console.log(tbiImage);
-            console.log(data);
-
+            
             data.images.push(tbiImage)
         })
+        if (data.cars[0].userId === 'a97903b5-117b-4e24-894e-66215f6757c5') {
+            data.cars[0].isAdmin = true
+        } else {
+            data.cars[0].isAdmin = false
+        }
+        data.cars[0].isAdmin
+        console.log(data);
         const reqUrl = req.originalUrl.replace('images', 'api')
         const serviceName = reqUrl.split('/')[2]
         const serviceUrl = serviceDiscoveryService.getServiceUrl(serviceName)
