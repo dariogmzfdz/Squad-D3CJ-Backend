@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS "D3CJ"."Users"
     "role_user" character varying(10) COLLATE pg_catalog."default",
     "createdAt" timestamp with time zone NOT NULL,
     "updatedAt" timestamp with time zone NOT NULL,
-    CONSTRAINT users_pkey PRIMARY KEY ("userId")
+    CONSTRAINT users_pkey PRIMARY KEY ("userId"),
     CONSTRAINT email UNIQUE (email)
         INCLUDE(email),
     CONSTRAINT username UNIQUE (username)
