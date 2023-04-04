@@ -48,7 +48,6 @@ services:
       - '5432:${DB_PORT}'
     volumes:
       - data:/data/db
-      - ./config/ddl.sql:/docker-entrypoint-initdb.d/create_tables.sql
 volumes:
   data: {}
   images: 
